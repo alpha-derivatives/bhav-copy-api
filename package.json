@@ -1,0 +1,26 @@
+{
+  "name": "bhav_copy_node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "express": "^4.17.1",
+    "natives": "^1.1.6",
+    "request": "^2.88.2",
+    "unzipper": "^0.10.11"
+  },
+  "engines": {
+    "node": "12.19.1"
+  }
+}
