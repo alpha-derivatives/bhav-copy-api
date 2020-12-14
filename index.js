@@ -5,7 +5,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 app.use(cors());
-app.use(bodyParser.json({limit: '50mb'}));
+// app.use(bodyParser.json({limit: '50mb'}));
+
+app.get('/', (req, res) => {
+  res.send('working');
+});
 
 app.get('/livecheck', (req, res) => {
   res.send({success: true});
