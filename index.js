@@ -15,31 +15,44 @@ app.get('/livecheck', (req, res) => {
   res.send({success: true});
 });
 
-app.get('/get-bhav-copy', (req, res) => {
+app.get('/get-bhav-copy', async (req, res) => {
   const { company, day, month, year } = req.query;
   const options = {
     type: 'json'  // optional. if not specified, zip file will be downloaded valid TYPES: ['json', 'csv', 'zip']
    // dir: "xxxx" // optional. if not specified, files will be downloaded under NSE folder
   };
   const request = new BhavCopy(options);
-  
-  request.download({
-    month: month, // required (values acn be anything given below under Month CODES)
-    year: year, // required (values acn be anything given below under YEAR CODES)
-    day: day // optional (values can be anything in range: 1 - 31)
-  })
-  .then(data => {
-    // console.log(data);
-    if(data && data[0] && data[0].length > 0) {
+
+  try{
+    const data = await request.download({month, year, day});
+    if(data && data[0]) {
       const filterData = data[0].filter((v1) => v1.SYMBOL === company);
       // console.log(filterData); // Wait! Files are downloading...
-      res.send(filterData);
+      res.status(200).send(filterData);
     }
-  })
-  .catch(err => {
+  }catch(err){
     console.log(err);
     res.send(err);
-  });
+  }
+  
+  
+  // request.download({
+  //   month: month, // required (values acn be anything given below under Month CODES)
+  //   year: year, // required (values acn be anything given below under YEAR CODES)
+  //   day: day // optional (values can be anything in range: 1 - 31)
+  // })
+  // .then(data => {
+  //   // console.log(data);
+  //   if(data && data[0] && data[0].length > 0) {
+  //     const filterData = data[0].filter((v1) => v1.SYMBOL === company);
+  //     // console.log(filterData); // Wait! Files are downloading...
+  //     res.send(filterData);
+  //   }
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  //   res.send(err);
+  // });
 });
 
 
