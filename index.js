@@ -32,7 +32,7 @@ app.get('/get-bhav-copy', (req, res) => {
     // console.log(data);
     if(data && data[0] && data[0].length > 0) {
       const filterData = data[0].filter((v1) => v1.SYMBOL === company);
-      console.log(filterData); // Wait! Files are downloading...
+      // console.log(filterData); // Wait! Files are downloading...
       res.send(filterData);
     }
   })
