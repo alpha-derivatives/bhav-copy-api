@@ -29,9 +29,12 @@ app.get('/get-bhav-copy', (req, res) => {
     day: day // optional (values can be anything in range: 1 - 31)
   })
   .then(data => {
-    const filterData = data[0].filter((v1) => v1.SYMBOL === company);
-    // console.log(filterData); // Wait! Files are downloading...
-    res.send(filterData);
+    // console.log(data);
+    if(data && data[0] && data[0].length > 0) {
+      const filterData = data[0].filter((v1) => v1.SYMBOL === company);
+      console.log(filterData); // Wait! Files are downloading...
+      res.send(filterData);
+    }
   })
   .catch(err => {
     console.log(err);
