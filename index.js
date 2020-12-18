@@ -16,7 +16,7 @@ app.get('/livecheck', (req, res) => {
 });
 
 app.get('/get-bhav-copy', async (req, res) => {
-  const { company, day, month, year } = req.query;
+  const { company, day, month, year, expiryDate, instrument } = req.query;
   const options = {
     type: 'json'  // optional. if not specified, zip file will be downloaded valid TYPES: ['json', 'csv', 'zip']
    // dir: "xxxx" // optional. if not specified, files will be downloaded under NSE folder
@@ -26,7 +26,7 @@ app.get('/get-bhav-copy', async (req, res) => {
   try{
     const data = await request.download({month, year, day});
     if(data && data[0]) {
-      const filterData = data[0].filter((v1) => v1.SYMBOL === company);
+      const filterData = data[0].filter((v1) => v1.SYMBOL === company && v1.EXPIRY_DT === expiryDate && v1.INSTRUMENT === instrument);
       // console.log(filterData); // Wait! Files are downloading...
       res.status(200).send(filterData);
     }
