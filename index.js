@@ -25,9 +25,10 @@ app.get('/get-bhav-copy', async (req, res) => {
 
   try{
     const data = await request.download({month, year, day});
+    console.log(data);
     if(data && data[0]) {
       const filterData = data[0].filter((v1) => v1.SYMBOL === company && v1.EXPIRY_DT === expiryDate && v1.INSTRUMENT === instrument);
-      // console.log(filterData); // Wait! Files are downloading...
+      console.log(filterData); // Wait! Files are downloading...
       res.status(200).send(filterData);
     }
   }catch(err){
