@@ -22,7 +22,7 @@ app.get('/get-bhav-copy', async (req, res) => {
    // dir: "xxxx" // optional. if not specified, files will be downloaded under NSE folder
   };
   const request = new BhavCopy(options);
-
+  console.log(req.query);
   try{
     const data = await request.download({month, year, day});
     // console.log(data);
