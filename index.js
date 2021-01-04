@@ -31,10 +31,12 @@ app.get('/get-bhav-copy', async (req, res) => {
       if(instrument === 'OPT'){
         const optionsData = filterData.filter((v2) => v2.STRIKE_PR === strike_price && v2.OPTION_TYP === call_put);
         // console.log(optionsData);
-        res.status(200).send(optionsData);
+        if(optionsData.length > 0) res.status(200).send(optionsData[0]);
+        else res.status(200).send({success: false});
       }else{
         // console.log(filterData); // Wait! Files are downloading...
-        res.status(200).send(filterData);
+        if(filterData.length > 0) res.status(200).send(filterData[0]);
+        else res.status(200).send({success: false});
       }
     }
   }catch(err){
