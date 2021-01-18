@@ -25,9 +25,12 @@ app.get('/get-bhav-copy', async (req, res) => {
   console.log(req.query);
   try{
     const data = await request.download({month, year, day});
-    // console.log(data);
+    console.log('//////////////////data//////////////////////')
+    console.log(data);
     if(data && data.length > 0 && data[0] && data[0].length > 0) {
       const filterData = data[0].filter((v1) => v1.SYMBOL === company && v1.EXPIRY_DT === expiryDate && v1.INSTRUMENT.includes(instrument));
+      console.log('//////////////////filterData//////////////////')
+      console.log(filterData);
       if(instrument === 'OPT'){
         const optionsData = filterData.filter((v2) => v2.STRIKE_PR === strike_price && v2.OPTION_TYP === call_put);
         // console.log(optionsData);

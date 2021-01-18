@@ -147,7 +147,7 @@ class BhavCopy {
      */
     __generateFileNames(criteria) {
       const { month, year, day } = criteria;
-      const baseUrl = "https://www1.nseindia.com/content/historical/DERIVATIVES/";
+      const baseUrl = "https://archives.nseindia.com/content/historical/DERIVATIVES";
       const allFilesPathInMonth = [];
       if (!day || day === undefined) {
         for (let i = 1; i <= 31; i++) {
@@ -167,6 +167,7 @@ class BhavCopy {
         // /content/historical/DERIVATIVES/2020/DEC/fo10DEC2020bhav.csv.zip
         const fileName = "cm" + day + month + year + "bhav" + ".csv.zip";
         const url2 = `${baseUrl}/${year}/${month}/fo${day}${month}${year}bhav.csv.zip`;
+        // console.log(fileName, url2);
         const url = baseUrl + year + "/" + month + "/" + fileName;
         allFilesPathInMonth.push(url2);
       }
